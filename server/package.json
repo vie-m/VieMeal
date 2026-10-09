@@ -1,0 +1,29 @@
+{
+  "name": "viemeal-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "VieMeal API: Express + PostgreSQL (raw SQL with pg)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "vitest run",
+    "db:schema": "node scripts/runSql.js ../database/schema.sql ../database/seed_base.sql ../database/seed_indonesian.sql",
+    "db:usda": "node scripts/importUsda.js",
+    "db:recipes": "node scripts/seedRecipes.js",
+    "db:setup": "npm run db:schema && npm run db:usda && npm run db:recipes"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "csv-parse": "^5.5.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.8"
+  }
+}

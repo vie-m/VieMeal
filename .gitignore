@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Secrets (copy .env.example to .env instead)
+.env
+.env.*
+!.env.example
+.vercel/
+
+# Build output
+client/dist/
+client/dev-dist/
+
+# Large / generated data (download yourself, see README)
+data/usda/*.csv
+data/usda/*.zip
+
+# Portable PostgreSQL used on the author's PC
+local-postgres/
+
+*.log
+.DS_Store

@@ -1,0 +1,26 @@
+# PostgreSQL for VieMeal.
+# Start:  docker compose up -d
+# Stop:   docker compose down        (add -v to also delete the data)
+# Port 5433 on your PC -> 5432 inside the container (avoids clashing with
+# another local PostgreSQL on 5432).
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: viemeal-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: viemeal
+    ports:
+      - "5433:5432"
+    volumes:
+      - viemeal-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d viemeal"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  viemeal-data:

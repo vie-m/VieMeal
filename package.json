@@ -1,0 +1,6 @@
+{
+  "name": "viemeal",
+  "private": true,
+  "type": "module",
+  "description": "VieMeal: React (client/) + Express API (server/), deployed together on Vercel"
+}

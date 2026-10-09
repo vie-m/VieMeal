@@ -1,5 +1,7 @@
 # VieMeal - AI Meal Planner
 
+**Live demo: https://viemeal.vercel.app** (click "Continue as guest" — no sign-up needed)
+
 **Track what you eat, reach your nutrition targets, and get meal plans that fit your diet, allergies and goals. Works on phones (installable PWA) and on desktop.**
 
 > Screenshots

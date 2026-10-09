@@ -14,7 +14,7 @@ import { BMI_COLORS, BMI_LABELS, MEAL_LABELS, fmt, isoDate } from '../utils/form
 
 function greeting() {
   const h = new Date().getHours();
-  return h < 11 ? 'Good morning' : h < 15 ? 'Good afternoon' : h < 19 ? 'Good evening' : 'Good night';
+  return h < 4 ? 'Good evening' : h < 11 ? 'Good morning' : h < 15 ? 'Good afternoon' : 'Good evening';
 }
 
 function WaterCard({ target }) {
@@ -152,7 +152,7 @@ export default function Home() {
                 <span className={`badge px-2 py-1 text-sm ${BMI_COLORS[t.bmi_category]}`}>{BMI_LABELS[t.bmi_category]}</span>
               </div>
               <BmiScale bmi={t.bmi} standard={t.bmi_standard} />
-              <p className="muted text-sm">Healthy range for your height: {t.ideal_weight.min} - {t.ideal_weight.max} kg</p>
+              <p className="muted text-sm">Healthy range for your height: <span className="whitespace-nowrap">{t.ideal_weight.min} - {t.ideal_weight.max} kg</span></p>
               <Link to="/app/progress" className="mt-2 inline-block text-sm font-medium text-brand-600">Log weight</Link>
             </>
           )}

@@ -93,11 +93,12 @@ export default function Planner() {
   const [showList, setShowList] = useState(false);
   const [why, setWhy] = useState(null); // { item, text, loading, error }
 
-  // Open today's tab when a plan loads.
+  // Open today's tab when a plan loads, and make the 1 day / 7 days toggle match the plan.
   useEffect(() => {
     if (!plan?.days) return;
     const i = plan.days.findIndex((d) => d.date === isoDate());
     setDayIdx(i >= 0 ? i : 0);
+    setDays(plan.days.length > 1 ? 7 : 1);
   }, [plan?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const generate = async (withAi) => {

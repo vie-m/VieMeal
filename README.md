@@ -4,13 +4,11 @@
 
 **Track what you eat, reach your nutrition targets, and get meal plans that fit your diet, allergies and goals. Works on phones (installable PWA) and on desktop.**
 
-> Screenshots
->
-> | Mobile | Desktop |
-> | --- | --- |
-> | ![Mobile screenshot](docs/screenshot-mobile.png) | ![Desktop screenshot](docs/screenshot-desktop.png) |
->
-> *(placeholders: add your own screenshots to `docs/`)*
+![VieMeal dashboard](docs/images/dashboard.png)
+
+| Meal planner | Progress | Phone |
+| --- | --- | --- |
+| ![Meal planner](docs/images/meal-planner.png) | ![Progress charts](docs/images/progress.png) | ![Mobile dashboard](docs/images/mobile.png) |
 
 ---
 
@@ -20,7 +18,7 @@
 - **Food database with ~7,900 foods**: USDA SR Legacy (7,793 foods) plus 84 common Indonesian dishes and ingredients (marked *estimated values*)
 - **Typo-tolerant food search** (PostgreSQL `pg_trgm`), category chips, diet / allergen filtering with a "show all" option
 - **Food detail**: nutrition per 100 g and per serving ("1 piring", "1 tusuk"...), grams calculator, macro pie chart, allergen tags, favorite / dislike
-- **Custom foods** (private to the user) and **barcode lookup** via Open Food Facts
+- **Custom foods** (private to the user)
 - **Food diary** with daily totals vs targets, edit and delete entries
 - **Home dashboard**: calorie ring, macro bars, water tracker (+250 ml), today's planned meals with "Log this", BMI card
 - **Rule-based meal planner** (1 or 7 days): swap, lock, "Log this day", shopping list grouped by category
@@ -326,7 +324,7 @@ Set `AI_PROVIDER`, `AI_API_KEY` and `AI_MODEL` in `server/.env`. The key stays o
 ## Data sources and credits
 
 - **USDA FoodData Central, SR Legacy** (April 2018 release). U.S. Department of Agriculture, Agricultural Research Service. Public domain. <https://fdc.nal.usda.gov/>
-- **Open Food Facts** for barcode lookup (Open Database License). <https://world.openfoodfacts.org/>
+- **Open Food Facts** for the API-only barcode lookup endpoint (Open Database License). <https://world.openfoodfacts.org/>
 - **Indonesian foods** (`database/seed_indonesian.sql`): values are **estimates** per 100 g based on typical recipes and common Indonesian food composition references. They are marked `source = 'estimate'` and shown with an *estimated values* label in the app. Real dishes vary a lot between cooks.
 
 ## Health disclaimer
@@ -448,7 +446,7 @@ The API function may run for up to 60 seconds (`maxDuration` in `vercel.json`), 
 
 Click **Continue as guest** on the landing, login, or register page. VieMeal creates a private temporary account with blank personal settings and temporary sample history: 14 days of food logs, weight logs, and water logs. You go directly to Profile & settings and choose your own sex, birth date, body details, activity, goal, diet, and allergies. Each visitor gets a separate account, so guest data is not shared.
 
-Guests can search foods, use the rule-based meal planner, view recipes, create private recipes/custom foods, log meals, water, and weight, and inspect progress charts. Guests cannot use the AI assistant or barcode lookup. A guest can click **Create free account** to keep all guest data and unlock AI. Guest accounts expire after 24 hours if not upgraded; expired guests are cleaned when a new guest session starts.
+Guests can search foods, use the rule-based meal planner, view recipes, create private recipes/custom foods, log meals, water, and weight, and inspect progress charts. Guests cannot use the AI assistant. A guest can click **Create free account** to keep all guest data and unlock AI. Guest accounts expire after 24 hours if not upgraded; expired guests are cleaned when a new guest session starts.
 
 No public demo email or password exists anymore.
 
@@ -469,7 +467,7 @@ All responses are JSON. Errors look like `{ "error": "message" }`. Routes marked
 | GET / POST | `/api/weights` | 🔒 | Weight history (with BMI) / log weight |
 | GET | `/api/foods/categories` | 🔒 | Food categories |
 | GET | `/api/foods/search?q=&category=&page=&all=1&favorites=1` | 🔒 | Search (filtered by diet/allergens unless `all=1`) |
-| GET | `/api/foods/barcode/:code` | 🔒 | Open Food Facts lookup (registered accounts only; saved as a food) |
+| GET | `/api/foods/barcode/:code` | 🔒 | Open Food Facts lookup, API only, not in the UI (registered accounts only; saved as a food) |
 | GET | `/api/foods/:id` | 🔒 | Nutrition per 100 g, servings, allergens, favorite/dislike flags |
 | POST | `/api/foods` | 🔒 | Create custom food |
 | POST / DELETE | `/api/foods/:id/favorite` | 🔒 | Add / remove favorite |
